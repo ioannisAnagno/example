@@ -1,0 +1,91 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html>
+
+  <head>
+    <script type="text/javascript">
+
+        function getEntries(productId) {
+            // localStorage.setItem("productId", productId);
+            window.location.href = "/entry/list/"+ productId;
+        }
+
+    </script>
+    <title>List of Products</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="/css/homepage-styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/products-styles.css">
+
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="/index">Home</a>
+      </div>
+    </nav>
+
+      <div class="container">
+        <div id="products" class="row list-group">
+          <th:block th:each="product : ${products}">
+          <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+              <img class="group list-group-image" th:src="''+ ${product.imageURL}+''" alt="" style="object-fit: contain; height: 250px; width: 250px" />
+                <!--<img class="group list-group-image" src="https://ss7.vzw.com/is/image/VerizonWireless/apple-iphonexs-spacegrey-back?$png8alpha256$&hei=410==" alt="" />-->
+                <div class="caption">
+
+                  <h4 class="group inner list-group-item-heading" th:text="${product.name}"></h4>
+                  <p class="group inner list-group-item-text" th:text="${product.imageURL}"></p>
+                  <p class="group inner list-group-item-text" th:text="${product.category}"></p>
+                  <p class="group inner list-group-item-text" th:text="${product.description}"></p>
+                  <div class="rating-box">
+                    <div th:style="'width:' +${product.stars}+'%;'" class="rating"></div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                      <button th:onclick="'javascript:getEntries(' + ${product.id} + ');'" class="btn btn-success">Select Product</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </th:block>
+        </div>
+      </div>
+
+    <div align="center">
+      <div class="pagination">
+        <a href="#">&laquo;</a>
+        <a class="active" href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">&raquo;</a>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script type="text/javascript" src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  </body>
+
+
+
+</html>
